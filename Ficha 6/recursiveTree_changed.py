@@ -17,18 +17,15 @@ import random
 def tree(branchLen,t,pensize, red):
         if branchLen > 11:
                 x = random.randint(15,45)
-                #sub = random.randint(2,10) - crash
+                sub = random.randint(5,20) 
                 t.pensize(pensize)
                 t.color(red,150,0)
                 t.forward(branchLen)
-                t.right(20) #default 20
-                print(branchLen)
-                tree(branchLen-15,t, pensize-2, red-20) #default 15
-                sub = random.randint(2,10)
-                t.left(40) #default 40
-                tree(branchLen-15,t, pensize-2, red-20) #default 15
-                sub = random.randint(2,10)
-                t.right(20) #default 20
+                t.right(x) #default 20
+                tree(branchLen-sub,t, pensize-1, red-10) #default 15
+                t.left(2*x) #default 40
+                tree(branchLen-(0.5*sub),t, pensize-1, red-10) #default 15
+                t.right(x) #default 20
                 t.backward(branchLen)
                 
                 
@@ -43,7 +40,7 @@ def main():
         turtle.colormode(255)
     
     
-        tree(100,t,10,150)
+        tree(75,t,10,150)
         myWin.exitonclick()
 
 main()
