@@ -48,7 +48,8 @@ my_list = [2,4,7,0,6]
 random_list = [randrange(100) for x in range(50)]
 my_list = [2,4,7,0,6]
 
-def kLowestInt(number_list, k):
+# O(n)
+def kLowestInt_n(number_list, k):
     new_list = []
     
     while len(new_list) < k:
@@ -60,10 +61,15 @@ def kLowestInt(number_list, k):
                 lowest_number_index = i
         new_list.append(lowest_number)
         number_list.pop(lowest_number_index)
-    return new_list
+    return new_list[k-1]
 
+#O(n log(n))
+def kLowestInt_nlogn(number_list,k):
+    number_list.sort()
+    return number_list[k-1]
 #Testing
-print(random_list)
-print(kLowestInt(random_list,8))
-print(random_list)
+#print(random_list)
+print(kLowestInt_nlogn(random_list,8))
+print(kLowestInt_n(random_list,8))
+#print(random_list)
 
