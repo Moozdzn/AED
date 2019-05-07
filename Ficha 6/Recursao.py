@@ -34,10 +34,15 @@ def f_recursive(n):
        return(f_recursive(n-1) + f_recursive(n-2))
 
 def f_iterative(n):
-    a, b = 0, 1
-    for _ in range(n):
-        a, b = b, a + b
-    return a
+    a = 1
+    b = 1
+    result = 0
+    for _ in range(n-2):
+        result = a + b
+        a = b 
+        b = result
+    return result
+
 
 def pascal_triangle(n):
     if n == 0:
@@ -65,4 +70,4 @@ def pascal_triangle(n):
 #print(f_recursive(6))
 #print(f_iterative(6))
 
-print(pascal_triangle(4))
+#print(pascal_triangle(4))
