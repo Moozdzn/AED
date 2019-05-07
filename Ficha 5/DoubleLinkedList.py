@@ -39,13 +39,21 @@ class DoubleLinkedList:
             self.head = temp            
     def remove(self,item):
         current = self.head
-        found = False
-        while not found:
+        while current is not None:
             if current.getData() == item:
-                current.getNext().setPrev(current.getPrev())
-                current.getPrev().setNext(current.getNext())
-                return
-            current = current.getNext()   
+                if current.getPrev() == None:
+                    self.head = current.getNext()
+                    current = self.head
+                    current.setPrev(None)
+                else:
+                    if current.getNext() == None:
+                        current = current.getPrev()
+                        current.setNext(None)
+                    else:
+                        current.getNext().setPrev(current.getPrev())
+                        current.getPrev().setNext(current.getNext())
+            current = current.getNext()
+
     def append(self, item):
         n = Node(item)
         current = self.tail
@@ -78,9 +86,85 @@ class DoubleLinkedList:
                 string += ']'        
         return string
 
-my_list = DoubleLinkedList()
-my_list.add(10)
-my_list.add(20)
-my_list.add(30)
-my_list.remove(20)
-print(my_list)
+def test_DLL():
+
+    print("CREATING EMPTY DOUBLY LINKED LIST")
+    my_dLL = DoubleLinkedList()
+    print("my_DL_list =", my_dLL)
+    print("The Doubly linked list is empty?", my_dLL.isEmpty())
+    print("List size:", my_dLL.size())
+
+    add_items = [31, 77, 17, 27]
+    print("\nADDING ITEMS", add_items)
+    for item in add_items:
+        # print("Adding item", item, end="   ")
+        my_dLL.add(item)
+        # print("my_list =", my_list)
+
+    remove_items = [17, 31, 27, 77]
+    print("\nREMOVING ITEMS", remove_items)
+    for item in remove_items:
+        print("my_DL_list =", my_dLL)
+        print("Removig item", item)
+        my_dLL.remove(item)
+
+    print("my_DL_list =", my_dLL)
+    print("size = ", my_dLL.size())
+
+    print("\nADDING, INSERTING and APPENDING ITEMS", add_items)
+    item = 10
+    print("\nAppending item", item)
+    my_dLL.append(item)
+    print("my_dLL = ", my_dLL)
+    print("size = ", my_dLL.size())
+
+    item = 11
+    print("\nAppending item", item)
+    my_dLL.append(item)
+    print("my_dLL = ", my_dLL)
+    print("size = ", my_dLL.size())
+
+    item = 9
+    print("\nAdding item", item)
+    my_dLL.add(item)
+    print("my_dLL = ", my_dLL)
+    print("size = ", my_dLL.size())
+
+    item = 12
+    pos = 2
+    print("\nInserting item", item, "at position", pos)
+    my_dLL.insert(2, item)
+    print("my_dLL = ", my_dLL)
+    print("size = ", my_dLL.size())
+
+    item = 13
+    pos = 0
+    print("\nInserting item", item, "at position", pos)
+    my_dLL.add(item)
+    print("my_dLL = ", my_dLL)
+    print("size = ", my_dLL.size())
+
+    item = 15
+    pos = my_dLL.size()
+    print("\nInserting item", item, "at position", pos)
+    my_dLL.insert(pos, item)
+    print("my_dLL = ", my_dLL)
+    print("size = ", my_dLL.size())
+
+
+    print("\nPOPPING ITEMS")
+
+    print("\nPop() - Last Item")
+    print("Item:", my_dLL.pop())
+    print("my_DL_list =", my_dLL)
+
+    print("\nPop(0) - First Item")
+    print("Item:", my_dLL.pop(0))
+    print("my_DL_list =", my_dLL)
+
+    print("\nPop(1) - Second Item")
+    print("Item:", my_dLL.pop(1))
+    print("my_DL_list =", my_dLL)
+
+if __name__ == "__main__":
+    test_DLL()
