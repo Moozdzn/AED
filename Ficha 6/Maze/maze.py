@@ -124,7 +124,7 @@ def searchFrom(maze, startRow, startColumn):
     return found
 
 
-myMaze = Maze('maze2.txt')
+myMaze = Maze('Ficha 6\Maze\maze2.txt')
 myMaze.drawMaze()
 myMaze.updatePosition(myMaze.startRow,myMaze.startCol)
 
