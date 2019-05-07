@@ -113,9 +113,9 @@ def searchFrom(maze, startRow, startColumn):
     maze.updatePosition(startRow, startColumn, TRIED)
     # Otherwise, use logical short circuiting to try each direction
     # in turn (if needed)
-    found = searchFrom(maze, startRow-1, startColumn) or \
+    found = searchFrom(maze, startRow, startColumn-1) or \
             searchFrom(maze, startRow+1, startColumn) or \
-            searchFrom(maze, startRow, startColumn-1) or \
+            searchFrom(maze, startRow-1, startColumn) or \
             searchFrom(maze, startRow, startColumn+1)
     if found:
         maze.updatePosition(startRow, startColumn, PART_OF_PATH)
@@ -124,7 +124,7 @@ def searchFrom(maze, startRow, startColumn):
     return found
 
 
-myMaze = Maze('maze2.txt')
+myMaze = Maze('Ficha 6\Maze\maze2.txt')
 myMaze.drawMaze()
 myMaze.updatePosition(myMaze.startRow,myMaze.startCol)
 
